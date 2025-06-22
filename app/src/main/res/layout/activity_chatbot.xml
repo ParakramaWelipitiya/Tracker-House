@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="64dp"
+        android:layout_height="66dp"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Close Menu"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/chatScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/chatLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/suggestionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:background="@android:color/transparent" />
+
+    <LinearLayout
+        android:id="@+id/inputBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:elevation="4dp">
+
+        <EditText
+            android:id="@+id/inputMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Type a message"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:maxLines="4"
+            android:scrollbars="vertical" />
+
+        <ImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Send"
+            android:padding="12dp"
+            android:src="@android:drawable/ic_menu_send" />
+
+    </LinearLayout>
+</LinearLayout>

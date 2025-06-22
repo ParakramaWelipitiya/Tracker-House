@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/menuButton"
+                    android:layout_width="63dp"
+                    android:layout_height="59dp"
+                    android:layout_margin="17dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Menu"
+                    android:src="@drawable/ic_menu"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView4"
+                    app:layout_constraintHorizontal_bias="0.017"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/irish_grover"
+                    android:text="Indian Bikes"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView4"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.404" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="111dp"
+                    android:layout_height="78dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/logo1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeimage1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian1" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bajaj CT 100"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC: 100cc\nModel Year: 2024"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs: 185,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeImage2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian2" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bajaj Platina"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC: 100cc\n Model year: 2015"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs:445,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeImage3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian3" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bajaj Pulsar NS200"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC: 200c\nModelYear: 2020"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs:550,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeImage4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian4" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hero Honda Super Splendor"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC: 125cc\nModel Year:2017"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="120,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeImage5"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian5" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TVS Apache RTR 200"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC: 200cc\nModel Year: 2018"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="650,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeImage6"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian6" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hero CBZ Xtreme"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC: 150cc \n Model Year:2021"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs:150,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeImage7"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian7" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bajaj Discover 150cc"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC:150cc\nModel Year:2011"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs: 238,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeImage8"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian8" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bajaj Avenger"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC:150cc \n Model Year:2017"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs:160,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/bikeImage9"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/indian9" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:id="@+id/bikeName9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TVS Star City Plus"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bikeDescription9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CC:110cc \nModel Year:2010"
+                        android:textSize="14sp"
+                        android:textColor="#666" />
+
+                    <TextView
+                        android:id="@+id/bikePrice9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs.150,000/="
+                        android:textSize="18sp"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
