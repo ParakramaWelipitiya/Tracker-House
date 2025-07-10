@@ -8,11 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -20,31 +16,23 @@ public class RegisterActivity extends AppCompatActivity {
     EditText usernameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
     Button registerButton;
     TextView loginText;
-    DatabaseHelper dbHelper;
+    UserDatabase dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this); // Enables full screen edge-to-edge UI
-        setContentView(R.layout.activity_register); // Set layout for registration
-
-        // Handle system insets (for status bar, nav bar, etc.)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(R.layout.activity_register);
 
         // Initialize view references
         usernameEditText = findViewById(R.id.Username_input);
         emailEditText = findViewById(R.id.email_input);
         passwordEditText = findViewById(R.id.password_input);
         confirmPasswordEditText = findViewById(R.id.confirmpassword_input);
-        registerButton = findViewById(R.id.register_button);
+        registerButton = findViewById(R.id.register_btn);
         loginText = findViewById(R.id.login_text);
 
         // Initialize database helper
-        dbHelper = new DatabaseHelper(this);
+        dbHelper = new UserDatabase(this);
 
         // Register button click listener
         registerButton.setOnClickListener(v -> {
@@ -91,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        // Navigate to LoginActivity when login text is clicked
+        // Navigate to LoginActivity when login text clicked
         loginText.setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
         });

@@ -2,7 +2,9 @@ package com.welipitiya.trackerhouse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,37 +14,40 @@ import java.util.List;
 
 public class FavoritesActivity extends AppCompatActivity {
 
-    private RecyclerView favoritesRecyclerView;  // RecyclerView to show favorite bikes
-    private FavoritesAdapter adapter;             // Adapter to bind bike data to RecyclerView
-    private FavoriteDBHelper dbHelper;             // DB helper to get favorite bikes
-    private ImageButton menuButton;                // Menu button to go to HomeMenuActivity
+    RecyclerView favoritesRecyclerView;
+    BikeAdapter adapter;
+    DBHelper dbHelper;
+    List<BikeModel> favoriteList;
+    ImageButton btnMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
-        // Initialize DB helper to access favorites DB
-        dbHelper = new FavoriteDBHelper(this);
+        // Bind the menu button
+        btnMenu = findViewById(R.id.btn_menu);
 
-        // Find RecyclerView in layout and set it to use vertical list layout
-        favoritesRecyclerView = findViewById(R.id.favoritesRecyclerView);
-        favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // Get all favorite bikes from the database
-        List<Bike> favoriteBikes = dbHelper.getAllFavorites();
-
-        // Create adapter with favorite bikes list and current context
-        adapter = new FavoritesAdapter(favoriteBikes, this);
-
-        // Connect adapter to RecyclerView
-        favoritesRecyclerView.setAdapter(adapter);
-
-        // Setup menu button to open HomeMenuActivity on click
-        menuButton = findViewById(R.id.menuButton);
-        menuButton.setOnClickListener(v -> {
-            Intent intent = new Intent(FavoritesActivity.this, HomeMenuActivity.class);
-            startActivity(intent);
+        // Set click listener to navigate to MenuActivity
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FavoritesActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
         });
+
+        favoritesRecyclerView = findViewById(R.id.recycler_view_favorites);
+        dbHelper = new DBHelper(this);
+
+        favoriteList = dbHelper.getAllFavorites();
+
+        if (favoriteList.isEmpty()) {
+            Toast.makeText(this, "No favorite bikes found", Toast.LENGTH_SHORT).show();
+        }
+
+        adapter = new BikeAdapter(this, favoriteList);
+        favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        favoritesRecyclerView.setAdapter(adapter);
     }
 }

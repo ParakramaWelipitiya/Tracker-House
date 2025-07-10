@@ -45,9 +45,8 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.biometric)
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
     implementation("com.google.android.gms:play-services-maps:18.1.0") // Maps SDK
     implementation("com.google.android.gms:play-services-location:21.0.1") // Location Services
     implementation ("com.squareup.okhttp3:okhttp:4.10.0") // For HTTP requests
-    implementation ("androidx.viewpager2:viewpager2:1.0.0") // For viewpage photos
-
 }

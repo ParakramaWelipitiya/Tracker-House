@@ -21,6 +21,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -42,39 +43,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
-    // Tracker House location
-    private final LatLng trackerHouse = new LatLng(7.0847, 79.9930); // Gampaha
-
-    private final float arrivalRadius = 100f; // Arrival radius in meters
+    private final LatLng trackerHouse = new LatLng(7.0847, 79.9930);
+    private final float arrivalRadius = 100f;
     private boolean hasArrived = false;
+    private boolean cameraMoved = false;
 
     private Marker userMarker;
     private Marker trackerMarker;
-    private Polyline routePolyline;  // Holds the route polyline
+    private Polyline routePolyline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        // Initialize FusedLocationProviderClient to fetch device's location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Load the Google Map fragment
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) {
-            mapFragment.getMapAsync(this); // Async call to load the map
+            mapFragment.getMapAsync(this);
         }
 
-        // Menu button to return to HomeMenuActivity
-        ImageButton menuButton = findViewById(R.id.menuButton);
+        ImageButton menuButton = findViewById(R.id.btn_menu);
         menuButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MapsActivity.this, HomeMenuActivity.class);
+            Intent intent = new Intent(MapsActivity.this, MenuActivity.class);
             startActivity(intent);
         });
 
-        // Location updates callback
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
@@ -82,21 +78,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 for (Location location : locationResult.getLocations()) {
                     LatLng userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-                    // Log current user location
-                    Log.d("LOCATION", "Lat: " + location.getLatitude() + ", Lng: " + location.getLongitude());
+                    Log.d("LOCATION", "Lat: " + userLatLng.latitude + ", Lng: " + userLatLng.longitude);
 
                     if (mMap != null) {
-                        // Add or update user marker
                         if (userMarker == null) {
                             userMarker = mMap.addMarker(new MarkerOptions()
                                     .position(userLatLng)
-                                    .title("You are here"));
+                                    .title("You"));
                         } else {
                             userMarker.setPosition(userLatLng);
                         }
 
-                        // Add Tracker House marker and circle only once
                         if (trackerMarker == null) {
                             trackerMarker = mMap.addMarker(new MarkerOptions()
                                     .position(trackerHouse)
@@ -110,28 +102,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     .strokeWidth(3));
                         }
 
-                        // Draw or update red route line between user and Tracker House
                         if (routePolyline == null) {
                             routePolyline = mMap.addPolyline(new PolylineOptions()
                                     .add(userLatLng, trackerHouse)
                                     .width(5)
-                                    .color(Color.RED));
+                                    .color(Color.parseColor("#4285F4")));
                         } else {
                             routePolyline.setPoints(Arrays.asList(userLatLng, trackerHouse));
                         }
 
-                        // Move camera to user location
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15));
+                        if (!cameraMoved) {
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15));
+                            cameraMoved = true;
+                        }
 
-                        // Calculate distance to Tracker House
                         float[] distance = new float[1];
                         Location.distanceBetween(
-                                location.getLatitude(), location.getLongitude(),
+                                userLatLng.latitude, userLatLng.longitude,
                                 trackerHouse.latitude, trackerHouse.longitude,
                                 distance
                         );
 
-                        // Notify user on arrival
                         if (distance[0] <= arrivalRadius && !hasArrived) {
                             hasArrived = true;
                             Toast.makeText(MapsActivity.this, "You have arrived at Tracker House!", Toast.LENGTH_LONG).show();
@@ -142,44 +133,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         };
     }
 
-    // Callback when map is ready
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Check location permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            mMap.setMyLocationEnabled(true); // Show blue dot on map
+            mMap.setMyLocationEnabled(true);
             startLocationUpdates();
         } else {
-            // Request permission
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
 
-    // Start requesting location updates
     private void startLocationUpdates() {
-        LocationRequest locationRequest = LocationRequest.create();
-        locationRequest.setInterval(10000); // every 10 seconds
-        locationRequest.setFastestInterval(5000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationRequest locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000)
+                .setMinUpdateIntervalMillis(5000)
+                .build();
 
-        // Ensure permission is granted before starting
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
         }
     }
 
-    // Stop location updates to save battery
     private void stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
-    // Resume tracking when activity resumes
     @Override
     protected void onResume() {
         super.onResume();
@@ -190,14 +173,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    // Stop tracking when activity is paused
     @Override
     protected void onPause() {
         super.onPause();
         stopLocationUpdates();
     }
 
-    // Handle user response to location permission request
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,

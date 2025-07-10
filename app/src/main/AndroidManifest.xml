@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.welipitiya.trackerhouse" >
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-feature android:name="android.hardware.location.gps"/>
-
-
 
     <application
         android:allowBackup="true"
@@ -40,15 +39,8 @@
             android:name=".MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".DashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
+
+        <!-- Splash Screen (Launcher) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true" >
@@ -58,19 +50,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatbotActivity" />
-        <activity android:name=".HomeMenuActivity" />
-        <activity android:name=".FavoritesActivity" />
-        <activity android:name=".AboutUsActivity" />
-        <activity android:name=".FaqActivity" />
+
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".DashboardActivity" />
         <activity android:name=".JapanBikesActivity" />
         <activity android:name=".IndianBikesActivity" />
         <activity android:name=".ElectricBikesActivity" />
-        <activity android:name=".DTracker1DetailActivity" />
-        <activity android:name=".WRXDetailActivity" />
-        <activity android:name=".DTracker2DetailActivity" />
-        <activity android:name=".NS200DetailActivity" />
-
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".FavoritesActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".FaqActivity" />
     </application>
 
 </manifest>

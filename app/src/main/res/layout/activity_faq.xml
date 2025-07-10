@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FaqActivity">
-
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".FaqActivity"
+    android:background="@drawable/background">
 
     <ImageButton
         android:id="@+id/menuButton"
-        android:layout_width="63dp"
-        android:layout_height="59dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@android:color/transparent"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Menu"
         android:src="@drawable/ic_menu"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,220 +24,303 @@
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/irish_grover"
         android:text="FAQ"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.490"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImage"
-        app:layout_constraintVertical_bias="0.037" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="61dp"
-        android:layout_height="71dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.345"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImage"
-        app:layout_constraintVertical_bias="0.018"
-        app:srcCompat="@drawable/faqlogo" />
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:fontFamily="@font/irish_grover"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/menuButton"
+        app:layout_constraintStart_toEndOf="@id/menuButton"
+        app:layout_constraintEnd_toStartOf="@+id/logo"
+        app:layout_constraintHorizontal_bias="0.5" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
-        app:layout_constraintHorizontal_bias="0.952"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/logo1"
+        android:layout_margin="12dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019"
-        app:srcCompat="@drawable/logo1" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:id="@+id/faqScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="0dp"
         android:fillViewport="true"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appName">
 
         <LinearLayout
             android:id="@+id/faqContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#F9F9F9"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="12dp">
 
-            <!-- Q 1 -->
-            <TextView
-                android:id="@+id/question1"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. How do I buy a bike from this app?"
-                android:textStyle="bold"
-                android:padding="18dp"
-                android:background="#E0E0E0"
-                android:textSize="16sp" />
-            <!-- A 1 -->
-            <TextView
-                android:id="@+id/answer1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Go to category, select your bike, then contact us."
-                android:padding="18dp"
-                android:visibility="gone"
-                android:textSize="15sp" />
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
 
-            <!--Q 2 -->
-            <TextView
-                android:id="@+id/question2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="2. I forgot my password. What should I do?"
-                android:textStyle="bold"
-                android:padding="18dp"
-                android:background="#E0E0E0"
-                android:textSize="16sp" />
-            <!-- A 2 -->
-            <TextView
-                android:id="@+id/answer2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Currently, password reset isn't available in the app. Please contact the dealership via the “Contact Us” page for help."
-                android:padding="18dp"
-                android:visibility="gone"
-                android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-            <!--Q 3 -->
-            <TextView
-                android:id="@+id/question3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="3. How do I browse available bikes?"
-                android:textStyle="bold"
-                android:padding="18dp"
-                android:background="#E0E0E0"
-                android:textSize="16sp" />
-            <!-- A 3 -->
-            <TextView
-                android:id="@+id/answer3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Once logged in, navigate to the home dashboard and tap on one of the categories like “Japan”, “Indian”, or “Electric” to explore bikes."
-                android:padding="18dp"
-                android:visibility="gone"
-                android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/question1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1. How do I buy a bike from this app?"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-            <!--Q 4 -->
-            <TextView
-                android:id="@+id/question4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="4. Can I track the dealership location?"
-                android:textStyle="bold"
-                android:padding="18dp"
-                android:background="#E0E0E0"
-                android:textSize="16sp" />
-            <!-- A 4 -->
-            <TextView
-                android:id="@+id/answer4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Yes. Use the “Location” feature in the app to view live location tracking and directions to the dealership."
-                android:padding="18dp"
-                android:visibility="gone"
-                android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/answer1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Go to category, select your bike, then contact us."
+                        android:textColor="#0038FF"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <!--Q 5 -->
-            <TextView
-                android:id="@+id/question5"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5. How can I contact the dealership?"
-                android:textStyle="bold"
-                android:padding="18dp"
-                android:background="#E0E0E0"
-                android:textSize="16sp" />
-            <!-- A 5 -->
-            <TextView
-                android:id="@+id/answer5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tap on the “Contact Us” option in the menu to view phone numbers, email, and dealership address."
-                android:padding="18dp"
-                android:visibility="gone"
-                android:textSize="15sp" />
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
 
-            <!--Q 6 -->
-            <TextView
-                android:id="@+id/question6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="6. What is the purpose of the ‘Recommended Bikes’ section?"
-                android:textStyle="bold"
-                android:padding="18dp"
-                android:background="#E0E0E0"
-                android:textSize="16sp" />
-            <!-- A 6 -->
-            <TextView
-                android:id="@+id/answer6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="This section shows top picks based on popularity and performance to help you choose the best option faster."
-                android:padding="18dp"
-                android:visibility="gone"
-                android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-            <!--Q 7 -->
-            <TextView
-                android:id="@+id/question7"
+                    <TextView
+                        android:id="@+id/question2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2. I forgot my password. What should I do?"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/answer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Currently, password reset isn't available in the app. Please contact the dealership via the “Contact Us” page for help."
+                        android:textColor="#0038FF"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="7.  Is my personal information safe in the app?"
-                android:textStyle="bold"
-                android:padding="18dp"
-                android:background="#E0E0E0"
-                android:textSize="16sp" />
-            <!-- A 7 -->
-            <TextView
-                android:id="@+id/answer7"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/question3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3. How do I browse available bikes?"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/answer3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Once logged in, navigate to the home dashboard and tap on one of the categories like “Japan”, “Indian”, or “Electric” to explore bikes."
+                        android:textColor="#0038FF"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Yes. Your login details and personal data are securely stored in our database and not shared with third parties."
-                android:padding="18dp"
-                android:visibility="gone"
-                android:textSize="15sp" />
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/question4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4. Can I track the dealership location?"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/answer4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Yes. Use the “Location” feature in the app to view live location tracking and directions to the dealership."
+                        android:textColor="#0038FF"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/question5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5. How can I contact the dealership?"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/answer5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Tap on the “Contact Us” option in the menu to view phone numbers, email, and dealership address."
+                        android:textColor="#0038FF"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/question6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="6. What is the purpose of the ‘Recommended Bikes’ section?"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/answer6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="This section shows top picks based on popularity and performance to help you choose the best option faster."
+                        android:textColor="#0038FF"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/question7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="7. Is my personal information safe in the app?"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/answer7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="Yes. Your login details and personal data are securely stored in our database and not shared with third parties."
+                        android:textColor="#0038FF"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
     </ScrollView>
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="223dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="268dp"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="#FA0000"
         android:text="Still need help? Contact Us"
-        android:backgroundTint="@android:color/black"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.944" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

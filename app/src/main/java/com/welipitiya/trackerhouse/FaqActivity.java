@@ -11,84 +11,65 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class FaqActivity extends AppCompatActivity {
 
-    // Flags to track if each answer is shown or hidden
-    private boolean showAnswer1 = false;
-    private boolean showAnswer2 = false;
-    private boolean showAnswer3 = false;
-    private boolean showAnswer4 = false;
-    private boolean showAnswer5 = false;
-    private boolean showAnswer6 = false;
-    private boolean showAnswer7 = false;
+    // Questions & Answers
+    TextView question1, answer1;
+    TextView question2, answer2;
+    TextView question3, answer3;
+    TextView question4, answer4;
+    TextView question5, answer5;
+    TextView question6, answer6;
+    TextView question7, answer7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faq);  // Set layout XML for FAQ screen
+        setContentView(R.layout.activity_faq);
 
-        // Find all question and answer TextViews by their IDs
-        TextView question1 = findViewById(R.id.question1);
-        TextView answer1 = findViewById(R.id.answer1);
-        TextView question2 = findViewById(R.id.question2);
-        TextView answer2 = findViewById(R.id.answer2);
-        TextView question3 = findViewById(R.id.question3);
-        TextView answer3 = findViewById(R.id.answer3);
-        TextView question4 = findViewById(R.id.question4);
-        TextView answer4 = findViewById(R.id.answer4);
-        TextView question5 = findViewById(R.id.question5);
-        TextView answer5 = findViewById(R.id.answer5);
-        TextView question6 = findViewById(R.id.question6);
-        TextView answer6 = findViewById(R.id.answer6);
-        TextView question7 = findViewById(R.id.question7);
-        TextView answer7 = findViewById(R.id.answer7);
+        // Menu button
+        ImageButton menuBtn = findViewById(R.id.menuButton);
+        menuBtn.setOnClickListener(v -> finish());
 
-        // When a question is clicked, toggle its answer's visibility
-        question1.setOnClickListener(v -> {
-            showAnswer1 = !showAnswer1;  // Flip boolean
-            answer1.setVisibility(showAnswer1 ? View.VISIBLE : View.GONE);  // Show or hide answer
-        });
-
-        question2.setOnClickListener(v -> {
-            showAnswer2 = !showAnswer2;
-            answer2.setVisibility(showAnswer2 ? View.VISIBLE : View.GONE);
-        });
-
-        question3.setOnClickListener(v -> {
-            showAnswer3 = !showAnswer3;
-            answer3.setVisibility(showAnswer3 ? View.VISIBLE : View.GONE);
-        });
-
-        question4.setOnClickListener(v -> {
-            showAnswer4 = !showAnswer4;
-            answer4.setVisibility(showAnswer4 ? View.VISIBLE : View.GONE);
-        });
-
-        question5.setOnClickListener(v -> {
-            showAnswer5 = !showAnswer5;
-            answer5.setVisibility(showAnswer5 ? View.VISIBLE : View.GONE);
-        });
-
-        question6.setOnClickListener(v -> {
-            showAnswer6 = !showAnswer6;
-            answer6.setVisibility(showAnswer6 ? View.VISIBLE : View.GONE);
-        });
-
-        question7.setOnClickListener(v -> {
-            showAnswer7 = !showAnswer7;
-            answer7.setVisibility(showAnswer7 ? View.VISIBLE : View.GONE);
-        });
-
-        // Menu button to open HomeMenuActivity
-        ImageButton menuButton = findViewById(R.id.menuButton);
-        menuButton.setOnClickListener(v -> {
-            Intent intent = new Intent(FaqActivity.this, HomeMenuActivity.class);
+        // Help button
+        Button helpButton = findViewById(R.id.button4);
+        helpButton.setOnClickListener(v -> {
+            // Navigate to About Us
+            Intent intent = new Intent(FaqActivity.this, AboutActivity.class);
             startActivity(intent);
         });
 
-        // Contact button to open AboutUsActivity
-        Button contactButton = findViewById(R.id.button4);
-        contactButton.setOnClickListener(v -> {
-            Intent intent = new Intent(FaqActivity.this, AboutUsActivity.class);
-            startActivity(intent);
+        // Link all questions and answers
+        question1 = findViewById(R.id.question1);
+        answer1 = findViewById(R.id.answer1);
+        question2 = findViewById(R.id.question2);
+        answer2 = findViewById(R.id.answer2);
+        question3 = findViewById(R.id.question3);
+        answer3 = findViewById(R.id.answer3);
+        question4 = findViewById(R.id.question4);
+        answer4 = findViewById(R.id.answer4);
+        question5 = findViewById(R.id.question5);
+        answer5 = findViewById(R.id.answer5);
+        question6 = findViewById(R.id.question6);
+        answer6 = findViewById(R.id.answer6);
+        question7 = findViewById(R.id.question7);
+        answer7 = findViewById(R.id.answer7);
+
+        // Toggle answer visibility on question tap
+        setToggleListener(question1, answer1);
+        setToggleListener(question2, answer2);
+        setToggleListener(question3, answer3);
+        setToggleListener(question4, answer4);
+        setToggleListener(question5, answer5);
+        setToggleListener(question6, answer6);
+        setToggleListener(question7, answer7);
+    }
+
+    private void setToggleListener(TextView question, TextView answer) {
+        question.setOnClickListener(v -> {
+            if (answer.getVisibility() == View.GONE) {
+                answer.setVisibility(View.VISIBLE);
+            } else {
+                answer.setVisibility(View.GONE);
+            }
         });
     }
 }

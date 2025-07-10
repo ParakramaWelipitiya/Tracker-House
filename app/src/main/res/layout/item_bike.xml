@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@drawable/recommendedbikesbackground">
+
+        <ImageView
+            android:id="@+id/bike_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/bike_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/bike_image"
+            android:layout_marginStart="12dp"
+            android:text="Bike Name"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/bike_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bike_name"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@id/bike_image"
+            android:text="Rs. 123456"
+            android:textColor="#FF0000"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <ImageButton
+            android:id="@+id/favorite_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_fav_border" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -4,20 +4,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.concurrent.Executor;
 
@@ -29,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView registerText;
 
     // Database helper for login validation
-    DatabaseHelper dbHelper;
+    UserDatabase dbHelper;
 
     // Biometric components
     private BiometricPrompt biometricPrompt;
@@ -38,10 +37,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
         // Enable edge-to-edge layout
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
 
         // Apply padding to avoid overlap with system UI
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -53,10 +52,10 @@ public class LoginActivity extends AppCompatActivity {
         // Bind UI elements
         emailEditText = findViewById(R.id.email_input);
         passwordEditText = findViewById(R.id.password_input);
-        loginButton = findViewById(R.id.login_button);
+        loginButton = findViewById(R.id.login_btn);
         registerText = findViewById(R.id.register_text);
 
-        dbHelper = new DatabaseHelper(this); // Initialize database helper
+        dbHelper = new UserDatabase(this); // Initialize database helper
 
         // Setup biometric authentication
         Executor executor = ContextCompat.getMainExecutor(this);
