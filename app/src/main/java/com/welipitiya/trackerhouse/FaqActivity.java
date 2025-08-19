@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class FaqActivity extends AppCompatActivity {
 
-    // Questions & Answers
     TextView question1, answer1;
     TextView question2, answer2;
     TextView question3, answer3;
@@ -25,19 +24,19 @@ public class FaqActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
 
-        // Menu button
+        //menu button
         ImageButton menuBtn = findViewById(R.id.menuButton);
         menuBtn.setOnClickListener(v -> finish());
 
-        // Help button
+        //help button
         Button helpButton = findViewById(R.id.button4);
         helpButton.setOnClickListener(v -> {
-            // Navigate to About Us
+            //navigate to aboutus
             Intent intent = new Intent(FaqActivity.this, AboutActivity.class);
             startActivity(intent);
         });
 
-        // Link all questions and answers
+        //link all questions and answers
         question1 = findViewById(R.id.question1);
         answer1 = findViewById(R.id.answer1);
         question2 = findViewById(R.id.question2);
@@ -53,7 +52,7 @@ public class FaqActivity extends AppCompatActivity {
         question7 = findViewById(R.id.question7);
         answer7 = findViewById(R.id.answer7);
 
-        // Toggle answer visibility on question tap
+        //toggle answer visibility on question tap
         setToggleListener(question1, answer1);
         setToggleListener(question2, answer2);
         setToggleListener(question3, answer3);

@@ -1,7 +1,10 @@
 package com.welipitiya.trackerhouse;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -35,13 +38,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_FAV_TABLE);
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FAVORITES);
         onCreate(db);
     }
 
-    // Add bike to favorites
+    //add bike to favorites
     public void addFavorite(String name, int image, String desc, String price) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -53,14 +57,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Remove bike from favorites
+    //remove bike from favorites
     public void removeFavorite(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FAVORITES, COL_NAME + "=?", new String[]{name});
         db.close();
     }
 
-    // Check if bike is in favorites
+    //check if bike is in favorites
     public boolean isFavorite(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_FAVORITES, null, COL_NAME + "=?", new String[]{name}, null, null, null);
@@ -69,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-    // Get all favorite bikes
+    //get all favorite bikes
     public List<BikeModel> getAllFavorites() {
         List<BikeModel> favList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -88,5 +92,4 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return favList;
     }
-
 }

@@ -13,7 +13,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //navigate to LoginActivity
+        //Getstarted button
         Button buttonStart = findViewById(R.id.start);
         buttonStart.setOnClickListener(v -> {
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);

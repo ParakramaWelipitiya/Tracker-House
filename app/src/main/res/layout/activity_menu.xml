@@ -6,18 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity">
-
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/menu_background"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    tools:context=".MenuActivity"
+    android:background="@drawable/dashboadbackground">
 
     <ImageButton
         android:id="@+id/closeBtn"
@@ -45,85 +35,109 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="User Name"
         android:textColor="#000"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/imageView3" />
 
     <LinearLayout
         android:id="@+id/buttonGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="36dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/username"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/username">
 
         <Button
             android:id="@+id/homebtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/material_dynamic_primary90"
+            android:backgroundTint="#006CFD"
             android:text="Home"
-            android:textColor="#000000" />
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/favoritesbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/material_dynamic_primary90"
+            android:backgroundTint="#006CFD"
             android:text="Favorites"
-            android:textColor="#000000" />
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/bookTestRideBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#006CFD"
+            android:text="Booked Test Rides"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/locationbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/material_dynamic_primary90"
+            android:backgroundTint="#006CFD"
             android:text="Location"
-            android:textColor="#000000" />
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/chatbotbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/material_dynamic_primary90"
+            android:backgroundTint="#006CFD"
             android:text="ChatBot"
-            android:textColor="#000000" />
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/aboutusbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/material_dynamic_primary90"
+            android:backgroundTint="#006CFD"
             android:text="About Us"
-            android:textColor="#000000" />
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/faqbuttonbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/material_dynamic_primary90"
+            android:backgroundTint="#006CFD"
             android:text="FAQ"
-            android:textColor="#000000" />
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="@android:color/holo_red_dark"
         android:text="Logout"
         android:textColor="#FFFFFF"
@@ -137,9 +151,9 @@
         android:id="@+id/imageView2"
         android:layout_width="227dp"
         android:layout_height="130dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:contentDescription="Logo"
-        android:src="@drawable/logo2"
+        android:src="@drawable/logo1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

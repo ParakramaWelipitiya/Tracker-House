@@ -6,7 +6,7 @@
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/dashboadbackground">
 
     <ImageButton
         android:id="@+id/btn_menu_dashboard"
@@ -76,8 +76,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/black"
+            android:backgroundTint="#006CFD"
             android:text="Japan"
+            android:textStyle="bold"
+            android:textSize="16dp"
             android:textColor="@color/white" />
 
         <Button
@@ -87,8 +89,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/black"
+            android:backgroundTint="#006CFD"
             android:text="Indian"
+            android:textStyle="bold"
+            android:textSize="16dp"
             android:textColor="@color/white" />
 
         <Button
@@ -96,8 +100,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/black"
+            android:backgroundTint="#006CFD"
             android:text="Electric"
+            android:textStyle="bold"
+            android:textSize="16dp"
             android:textColor="@color/white" />
 
     </LinearLayout>
@@ -109,8 +115,7 @@
         android:layout_marginTop="24dp"
         android:text="Recommended Bikes"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

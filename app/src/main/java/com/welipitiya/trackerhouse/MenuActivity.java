@@ -20,19 +20,20 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        // Bind UI components
+        //components
         ImageButton closeBtn = findViewById(R.id.closeBtn);
         logoutBtn = findViewById(R.id.logoutBtn);
         userNameText = findViewById(R.id.username);
 
         Button homeBtn = findViewById(R.id.homebtn);
         Button favoritesBtn = findViewById(R.id.favoritesbtn);
+        Button bookTestRideBtn = findViewById(R.id.bookTestRideBtn);
         Button locationBtn = findViewById(R.id.locationbtn);
         Button aboutUsBtn = findViewById(R.id.aboutusbtn);
         Button faqbuttonbtn = findViewById(R.id.faqbuttonbtn);
         Button chatbotBtn = findViewById(R.id.chatbotbtn);
 
-        // Close button: return to previous screen
+        // Close button(return to previous screen)
         closeBtn.setOnClickListener(v -> finish());
 
         // Logout button
@@ -42,32 +43,38 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Home → Dashboard
+        //Home button
         homeBtn.setOnClickListener(v -> {
             startActivity(new Intent(MenuActivity.this, DashboardActivity.class));
         });
 
-        // Favorites
+        //Favorites button
         favoritesBtn.setOnClickListener(v -> {
             startActivity(new Intent(MenuActivity.this, FavoritesActivity.class));
         });
 
-        //Location
+        //Booked test rides button
+        bookTestRideBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, BookedTestRidesActivity.class);
+            startActivity(intent);
+        });
+
+        //Location button
         locationBtn.setOnClickListener(v -> {
         startActivity(new Intent(MenuActivity.this, MapsActivity.class));
         });
 
-        // FAQ
+        //FAQ button
         faqbuttonbtn.setOnClickListener(v -> {
             startActivity(new Intent(MenuActivity.this, FaqActivity.class));
         });
 
-        // About Us
+        //About Us button
         aboutUsBtn.setOnClickListener(v -> {
         startActivity(new Intent(MenuActivity.this, AboutActivity.class));
         });
 
-        //chatbot
+        //Chatbot button(future implement)
         chatbotBtn.setOnClickListener(v -> {
             Toast.makeText(MenuActivity.this, "ChatBot feature coming soon!", Toast.LENGTH_SHORT).show();
         });

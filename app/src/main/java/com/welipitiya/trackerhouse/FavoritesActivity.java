@@ -25,10 +25,10 @@ public class FavoritesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
-        // Bind the menu button
+        //bind menu button
         btnMenu = findViewById(R.id.btn_menu);
 
-        // Set click listener to navigate to MenuActivity
+        //Set click listener to navigate to MenuActivity
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

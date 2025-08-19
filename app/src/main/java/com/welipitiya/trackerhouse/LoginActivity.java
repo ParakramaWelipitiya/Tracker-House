@@ -22,12 +22,12 @@ import java.util.concurrent.Executor;
 
 public class LoginActivity extends AppCompatActivity {
 
-    // UI components
+    //ui components
     EditText emailEditText, passwordEditText;
     Button loginButton;
     TextView registerText;
 
-    // Database helper for login validation
+    //Database helper for login validation
     UserDatabase dbHelper;
 
     // Biometric components
@@ -39,17 +39,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Enable edge-to-edge layout
+        //turn on edge-to-edge layout
         EdgeToEdge.enable(this);
 
-        // Apply padding to avoid overlap with system UI
+        //Apply padding to avoid overlap with system UI
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Bind UI elements
+        //UI elements
         emailEditText = findViewById(R.id.email_input);
         passwordEditText = findViewById(R.id.password_input);
         loginButton = findViewById(R.id.login_btn);
@@ -57,30 +57,30 @@ public class LoginActivity extends AppCompatActivity {
 
         dbHelper = new UserDatabase(this); // Initialize database helper
 
-        // Setup biometric authentication
+        //Setup biometric authentication
         Executor executor = ContextCompat.getMainExecutor(this);
 
         biometricPrompt = new BiometricPrompt(LoginActivity.this, executor, new BiometricPrompt.AuthenticationCallback() {
 
-            // Called when there's an error with the authentication process
+            //Called when theres a error with the authentication process
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
                 Toast.makeText(getApplicationContext(), "Authentication error: " + errString, Toast.LENGTH_SHORT).show();
             }
 
-            // Called when biometric authentication is successful
+            //Called when biometric authentication is successful
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 Toast.makeText(getApplicationContext(), "Authentication succeeded!", Toast.LENGTH_SHORT).show();
 
-                // Navigate to Dashboard if authentication is successful
+                //Navigate to Dashboard if authentication is successful
                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                 finish();
             }
 
-            // Called when biometric authentication fails
+            //Called when biometric authentication fails
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
@@ -88,32 +88,32 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Configure the biometric prompt dialog
+        //Configure the biometric prompt dialog
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Login with fingerprint")
                 .setSubtitle("Use your fingerprint to login")
                 .setNegativeButtonText("Use Email and Password")
                 .build();
 
-        // Check if biometric authentication is available
+        //Check if biometric authentication is available
         BiometricManager biometricManager = BiometricManager.from(this);
 
         if (biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) {
-            // Use biometric login if available
+            //Use biometric login if available
             loginButton.setOnClickListener(v -> biometricPrompt.authenticate(promptInfo));
         } else {
-            // If biometric is unavailable, fallback to email/password login
+            //If biometric is unavailable, fallback to email/password login
             loginButton.setOnClickListener(v -> {
                 String email = emailEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
 
-                // Validate input fields
+                //Validate input fields
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // Check credentials in the database
+                //Check credentials in the database
                 if (dbHelper.validateUser(email, password)) {
                     // Fetch username
                     String username = dbHelper.getUsernameByEmail(email);
@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
 
-                    // Navigate to dashboard
+                    //Navigate to dashboard
                     startActivity(new Intent(this, DashboardActivity.class));
                     finish();
                 } else {
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
 
-        // Navigate to registration screen when "register" text is clicked
+        //Navigate to registration screen when register text is clicked
         registerText.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
         });

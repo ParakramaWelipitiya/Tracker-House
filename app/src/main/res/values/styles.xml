@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyPickerTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogBodyTextStyle">@style/MyDialogBodyText</item>
+        <item name="materialButtonStyle">@style/MyDialogButtonStyle</item>
+    </style>
+
+    <style name="MyDialogButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#23FF00</item> <!-- OK button color -->
+    </style>
+
+    <style name="MyDialogBodyText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">#000000</item> <!-- Dialog text color -->
+    </style>
+</resources>

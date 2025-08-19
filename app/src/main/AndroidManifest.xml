@@ -40,7 +40,6 @@
             android:exported="false"
             android:label="@string/title_activity_maps" />
 
-        <!-- Splash Screen (Launcher) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true" >
@@ -61,6 +60,10 @@
         <activity android:name=".FavoritesActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".FaqActivity" />
+        <activity android:name=".TermsActivity"/>
+        <activity android:name=".PrivacyActivity"/>
+        <activity android:name=".BookedTestRidesActivity"/>
+
     </application>
 
 </manifest>

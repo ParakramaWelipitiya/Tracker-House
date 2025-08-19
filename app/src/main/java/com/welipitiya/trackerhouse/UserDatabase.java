@@ -17,12 +17,12 @@ public class UserDatabase extends SQLiteOpenHelper {
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
 
-    // Constructor to create the database
+    //constructor to create the database
     public UserDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Called once when database is created for the first time
+    //called once when database is created for the first time
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createUsersTable = "CREATE TABLE " + TABLE_USERS + " (" +
@@ -33,14 +33,14 @@ public class UserDatabase extends SQLiteOpenHelper {
         db.execSQL(createUsersTable);
     }
 
-    // Called when database version changes - handle upgrade logic here
+    //called when database version changes handle upgrade logic here
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         onCreate(db);
     }
 
-    // Insert a new user into users table
+    //insert a new user into users table
     public boolean insertUser(String email, String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -51,7 +51,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    // Check if a user already exists with the given email
+    //check if a user already exists with the given email
     public boolean checkUserExists(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_EMAIL + " = ?", new String[]{email});
@@ -60,7 +60,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         return exists;
     }
 
-    // Validate user login by checking email and password
+    //validate user login by checking email and password
     public boolean validateUser(String email, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " +
@@ -70,7 +70,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         return valid;
     }
 
-    // Get username for a given email (for display or profile)
+    //get username for a given email (for display or profile)
     public String getUsernameByEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_USERNAME + " FROM " + TABLE_USERS + " WHERE " + COLUMN_EMAIL + " = ?", new String[]{email});

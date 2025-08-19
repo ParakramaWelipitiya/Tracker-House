@@ -64,14 +64,14 @@ public class DashboardBikeAdapter extends RecyclerView.Adapter<DashboardBikeAdap
             }
         });
 
-        // WhatsApp button click
+        //whatsapp button
         holder.btnWhatsapp.setOnClickListener(v -> {
             String message = "Hello,\n\n" +
                     "I came across your listing for the following bike on the Tracker House app:\n\n" +
-                    "🚲 *" + bike.getName() + "*\n" +
-                    "💰 Price: *" + bike.getPrice() + "*\n\n" +
-                    "I'm interested in learning more details regarding its current availability, condition, and documentation.\n\n" +
-                    "Please let me know if it's still available and how I may proceed with the inquiry or inspection.\n\n" +
+                    "Bike Name: *" + bike.getName() + "*\n" +
+                    "Price: *" + bike.getPrice() + "*\n\n" +
+                    "I'm interested in more details about its condition, and documentation.\n\n" +
+                    "Please let me know.\n\n" +
                     "Thank you.\nBest regards.";
 
             String phoneNumber = "94754357288";

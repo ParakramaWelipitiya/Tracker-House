@@ -1,12 +1,16 @@
 package com.welipitiya.trackerhouse;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.BikeViewHolder> {
@@ -43,7 +48,7 @@ public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.BikeViewHolder
         holder.bikePrice.setText(bike.getPrice());
         holder.bikeImage.setImageResource(bike.getImageResId());
 
-        // Set favorite icon
+        //set favorite icon
         if (dbHelper.isFavorite(bike.getName())) {
             holder.favoriteButton.setImageResource(R.drawable.ic_fav_filled); // update with filled heart icon
             bike.setFavorite(true);
@@ -52,7 +57,7 @@ public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.BikeViewHolder
             bike.setFavorite(false);
         }
 
-        // Favorite icon click
+        //favorite icon click
         holder.favoriteButton.setOnClickListener(v -> {
             if (bike.isFavorite()) {
                 dbHelper.removeFavorite(bike.getName());
@@ -67,7 +72,7 @@ public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.BikeViewHolder
             }
         });
 
-        // Item click: show popup
+        //popup
         holder.itemView.setOnClickListener(v -> showPopup(bike));
     }
 
@@ -134,10 +139,10 @@ public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.BikeViewHolder
         whatsappBtn.setOnClickListener(v -> {
             String message = "Hello,\n\n" +
                     "I came across your listing for the following bike on the Tracker House app:\n\n" +
-                    "🚲 *" + bike.getName() + "*\n" +
-                    "💰 Price: *" + bike.getPrice() + "*\n\n" +
-                    "I'm interested in learning more details regarding its current availability, condition, and documentation.\n\n" +
-                    "Please let me know if it's still available and how I may proceed with the inquiry or inspection.\n\n" +
+                    "Bike Name: *" + bike.getName() + "*\n" +
+                    "Price: *" + bike.getPrice() + "*\n\n" +
+                    "I'm interested in more details about its condition, and documentation.\n\n" +
+                    "Please let me.\n\n" +
                     "Thank you.\nBest regards.";
 
             String phoneNumber = "94754357288";
@@ -159,5 +164,72 @@ public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.BikeViewHolder
 
         closeBtn.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
+
+        //booktestride button
+        Button bookTestRideBtn = popupView.findViewById(R.id.popup_book_test_ride);
+
+        bookTestRideBtn.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+
+            //date picker
+            DatePickerDialog datePicker = new DatePickerDialog(context,R.style.MyPickerTheme,
+                    (view, year, month, dayOfMonth) -> {
+                        // after picking date, show time picker
+                        TimePickerDialog timePicker = new TimePickerDialog(context,R.style.MyPickerTheme,
+                                (timeView, hour, minute) -> {
+                                    String dateTime = dayOfMonth + "/" + (month + 1) + "/" + year + " " + String.format("%02d:%02d", hour, minute);
+
+                                    //save booking
+                                    saveBooking(context, bike.getName(), dateTime);
+
+                                    //send whatsapp message
+                                    sendWhatsAppToAdmin(context, bike.getName(), dateTime);
+
+                                    Toast.makeText(context, "Test Ride Booked!", Toast.LENGTH_SHORT).show();
+
+                                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+                        timePicker.show();
+
+                        //set button colors manually
+                        timePicker.getButton(TimePickerDialog.BUTTON_POSITIVE)
+                                .setTextColor(Color.parseColor("#23FF00"));
+                        timePicker.getButton(TimePickerDialog.BUTTON_NEGATIVE)
+                                .setTextColor(Color.parseColor("#FF0000"));
+                    },
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH));
+            datePicker.show();
+
+            //set button colors manually
+            datePicker.getButton(DatePickerDialog.BUTTON_POSITIVE)
+                    .setTextColor(Color.parseColor("#23FF00")); // OK
+            datePicker.getButton(DatePickerDialog.BUTTON_NEGATIVE)
+                    .setTextColor(Color.parseColor("#FF0000")); // CANCEL
+        });
     }
+    //save booking in SharedPreferences
+    private void saveBooking(Context context, String bikeName, String dateTime) {
+        context.getSharedPreferences("Bookings", Context.MODE_PRIVATE)
+                .edit()
+                .putString(bikeName, dateTime)
+                .apply();
+    }
+
+    //send whatsapp message
+    private void sendWhatsAppToAdmin(Context context, String bikeName, String dateTime) {
+        String phoneNumber = "94754357288"; // <-- Admin WhatsApp number
+        String message = "New Test Ride Booking:%0A"
+                + "Bike: " + bikeName + "%0A"
+                + "Date & Time: " + dateTime;
+
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://wa.me/" + phoneNumber + "?text=" + message));
+            context.startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(context, "WhatsApp not installed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
