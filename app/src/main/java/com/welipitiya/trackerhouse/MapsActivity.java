@@ -43,6 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
+    //Coordinates of Tracker House
     private final LatLng trackerHouse = new LatLng(7.0847, 79.9930);
     private final float arrivalRadius = 100f;
     private boolean hasArrived = false;
@@ -57,8 +58,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        //Initialize Fused Location Client for GPS updates
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        //Load Google Map fragment
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) {
@@ -80,6 +83,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     LatLng userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
                     Log.d("LOCATION", "Lat: " + userLatLng.latitude + ", Lng: " + userLatLng.longitude);
 
+                    //add or update users marker
                     if (mMap != null) {
                         if (userMarker == null) {
                             userMarker = mMap.addMarker(new MarkerOptions()
@@ -94,6 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     .position(trackerHouse)
                                     .title("Tracker House"));
 
+                            //Draw circle around dealership to represent arrival radius
                             mMap.addCircle(new CircleOptions()
                                     .center(trackerHouse)
                                     .radius(arrivalRadius)
@@ -102,6 +107,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     .strokeWidth(3));
                         }
 
+                        //Draw a direct straight line
                         if (routePolyline == null) {
                             routePolyline = mMap.addPolyline(new PolylineOptions()
                                     .add(userLatLng, trackerHouse)
@@ -116,6 +122,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             cameraMoved = true;
                         }
 
+                        //Calculate distance to Tracker House
                         float[] distance = new float[1];
                         Location.distanceBetween(
                                 userLatLng.latitude, userLatLng.longitude,
@@ -123,6 +130,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 distance
                         );
 
+                        //Show message when arrived to tracker house
                         if (distance[0] <= arrivalRadius && !hasArrived) {
                             hasArrived = true;
                             Toast.makeText(MapsActivity.this, "You have arrived at Tracker House!", Toast.LENGTH_LONG).show();
@@ -137,17 +145,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //Check location permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            mMap.setMyLocationEnabled(true);
+            mMap.setMyLocationEnabled(true); //Show blue dot for current location
             startLocationUpdates();
         } else {
+            //Ask for permission
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
 
+    //Start continuous location updates
     private void startLocationUpdates() {
         LocationRequest locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000)
                 .setMinUpdateIntervalMillis(5000)
@@ -159,6 +170,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    //Stop location updates
     private void stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(locationCallback);
     }
@@ -176,9 +188,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onPause() {
         super.onPause();
-        stopLocationUpdates();
+        stopLocationUpdates(); //Stop updates when app is not visible
     }
 
+    //Handle permission results
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,

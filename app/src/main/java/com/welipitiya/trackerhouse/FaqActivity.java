@@ -62,6 +62,7 @@ public class FaqActivity extends AppCompatActivity {
         setToggleListener(question7, answer7);
     }
 
+    //FAQ questions and answers logic
     private void setToggleListener(TextView question, TextView answer) {
         question.setOnClickListener(v -> {
             if (answer.getVisibility() == View.GONE) {

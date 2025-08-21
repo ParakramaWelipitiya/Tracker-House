@@ -68,6 +68,7 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
 
+        //terms and conditions text buttons
         TextView txtTerms = findViewById(R.id.txtTerms);
         TextView txtPrivacy = findViewById(R.id.txtPrivacy);
 

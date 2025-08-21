@@ -81,6 +81,7 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
+    //user name in menu
     @Override
     protected void onResume() {
         super.onResume();
