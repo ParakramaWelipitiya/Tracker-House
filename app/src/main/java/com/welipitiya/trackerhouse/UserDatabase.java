@@ -70,7 +70,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         return valid;
     }
 
-    //get username for a given email (for display or profile)
+    //get username for menu screen to display
     public String getUsernameByEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT " + COLUMN_USERNAME + " FROM " + TABLE_USERS + " WHERE " + COLUMN_EMAIL + " = ?", new String[]{email});

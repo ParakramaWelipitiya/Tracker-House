@@ -46,7 +46,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.biometric)
     implementation ("com.github.bumptech.glide:glide:4.15.1")
-    implementation("com.google.android.gms:play-services-maps:18.1.0") // Maps SDK
-    implementation("com.google.android.gms:play-services-location:21.0.1") // Location Services
-    implementation ("com.squareup.okhttp3:okhttp:4.10.0") // For HTTP requests
+    implementation("com.google.android.gms:play-services-maps:18.1.0") //Maps SDK
+    implementation("com.google.android.gms:play-services-location:21.0.1") //Location Services
+    implementation ("com.squareup.okhttp3:okhttp:4.10.0") //For HTTP requests
 }
